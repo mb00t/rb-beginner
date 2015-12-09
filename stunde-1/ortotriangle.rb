@@ -1,2 +1,0 @@
-# orthogonal triangle
-
