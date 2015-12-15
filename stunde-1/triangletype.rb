@@ -2,16 +2,16 @@
 
 # введем данные
 puts "Введите первую длинну стороны треугольника a"
-tringlA = gets.chomp
+sideA = gets.chomp
 puts "Введите первую длинну стороны треугольника b"
-tringlB = gets.chomp
+sideB = gets.chomp.to_f
 puts "Введите первую длинну стороны треугольника c"
-tringlC = gets.chomp
+sideC = gets.chomp.to_f
 
 # преобразуем к типу с плавающей точкой
-sideA = tringlA.to_f
-sideB = tringlB.to_f
-sideC = tringlC.to_f
+#sideA = tringlA.to_f
+#sideB = tringlB.to_f
+#sideC = tringlC.to_f
 
 # ищем гипотенузу и катеты
 if sideA >= sideB and sideA >= sideC 

@@ -1,3 +1,4 @@
+#сдано
 #programm optimal weigth from ugrowth data
 
 puts "Приветствую. Введите свое имя"

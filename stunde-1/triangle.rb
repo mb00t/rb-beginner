@@ -1,3 +1,4 @@
+#сдано
 # area triangle from formula 1/2*a*h
 
 puts "Введите высоту треугольника в сантиметрах"
