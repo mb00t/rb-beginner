@@ -1,4 +1,5 @@
 # include days in year
+# 
 
 puts "введите год числом, пример - 1999"
 year = gets.chomp.to_i
@@ -16,11 +17,11 @@ days = 0
 ind = 0
 
 if monts < 13
+  if (year % 4 == 0 && year % 100 !=0) || year % 400 == 0
+    month[1] = 29
+  end
   while ind < monts
     days += month[ind]
-    if ind == 1 && year % 4 == 0
-      days += 1
-    end
     ind += 1
   end
 end

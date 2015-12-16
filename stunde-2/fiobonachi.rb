@@ -1,15 +1,11 @@
 # fiobonachi
 # 100 354224848179261915075
 
-fibn = []
-
-#start for index
-fibn.push 0
-fibn.push 1
+fibn = [0, 1]
 index = 1
 
 while index < 100
-  fibn.push fibn[index-1] + fibn[index]
+  fibn << fibn[index-1] + fibn[index]
   index += 1
 end
 
