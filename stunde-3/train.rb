@@ -10,7 +10,6 @@ attr_reader :name
 
   def initialize(name = "Stations1")
     @name = name
-    @trains = train
   end
 
   def add(train)
@@ -18,23 +17,23 @@ attr_reader :name
   end
 
   def delete(train)
-   self.trains.delete(train)
+   trains.delete(train)
   end
 
   def show
-    self.trains.each do |train_s|
+    trains.each do |train_s|
       puts train_s
     end  
   end
 
 # !! doublicate code !! 
   def show(type_t)
-    self.trains.each do |train_s|
+    trains.each do |train_s|
       puts train_s if train.type == type_t
     end
 
   def depart(train)
-    delete(train) if self.trains.length > 0  # .any?   !.emty?
+    delete(train) if trains.length > 0  # .any?   !.emty?
     # code send next stations. i not know array stations.
    end
 
@@ -48,10 +47,10 @@ class Route
 # add stations delete stations
 # show stations
 
-attr_reader :stations[] # more info in this macros! question type pointer
+attr_reader :stations
 
   def initialize(station_f = "StationFirst", station_e = "StationEnd")
-    self.stations = [station_f, station_e] if (station_f.defined?  && station_e.defined?)
+    @stations = [station_f, station_e] if (station_f.defined?  && station_e.defined?)
     # puts "error, object staitions not defined"
   end
 
@@ -61,12 +60,12 @@ attr_reader :stations[] # more info in this macros! question type pointer
   end
   
   def delete(station)
-    self.stations.delete(staition) if station.defined?
+    stations.delete(staition) if station.defined?
     # puts "error, object staitions not defined"
   end
 
   def show
-    self.stations.each do |station_s|
+    stations.each do |station_s|
       print "#{station_s.name}"
     end
   end
@@ -87,10 +86,10 @@ attr_reader :number,:type, :count_wagon, :route, :staition
 
   def initialize(number = "Train", type = true, count_wagons = 1)
     #dublicate self !
-    self.number = number
-    self.type = type
-    self.count_wagons =  count_wagons
-    self.speed = 0
+    @number = number
+    @type = type
+    @count_wagons = count_wagons
+    @speed = 0
   end
 
   def up(speed)
@@ -114,11 +113,11 @@ attr_reader :number,:type, :count_wagon, :route, :staition
   end
 
   def add
-    self.count_wagon += self.count_wagon if self.speed == 0
+    self.count_wagon += 1 if speed == 0
   end
 
   def del
-    self.count_wagon -= self.count_wagon if self.speed == 0 && self.count_wagon > 0
+    self.count_wagon -= 1 if self.speed == 0 && self.count_wagon > 0
   end
 
   def add_route(route)
@@ -140,14 +139,14 @@ attr_reader :number,:type, :count_wagon, :route, :staition
 
   def show(type_s)
     # uglu ugly ugly
-    node = self.station
+    #node = self.station
     case type_s
     when "current"
-      puts "#{ self.route[index(self.station)].name }"  # :-)  self.station.name
+      puts "#{ route[index(station)].name }"  # :-)  station.name
     when "buck"
-       puts "#{ self.route[index(self.station) - 1].name }" if self.route[index(self.station) > 0
+       puts "#{ route[index(station) - 1].name }" if route[index(station) > 0
     when "next"
-       puts "#{ self.route[index(self.station) + 1].name }" if self.route[index(self.station) <= self.route.length
+       puts "#{ route[index(station) + 1].name }" if route[index(station) <= route.length
     end
   end
 
