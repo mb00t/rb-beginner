@@ -8,9 +8,19 @@ attr_accessor :trains
 
 attr_reader :name
 
+@@all = [] # не уверен что объявление необходимо
+
+def self.all
+  puts "All stations"
+  @@all.each do |station|
+      puts "!- #{station.name}"
+    end
+end
+
   def initialize(name)
     @name = name
     @trains = []
+    @@all << self
   end
 
   def add(train)

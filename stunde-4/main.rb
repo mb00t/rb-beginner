@@ -1,3 +1,4 @@
+require_relative 'maker.rb'
 require_relative 'railwaystation.rb'
 require_relative 'train.rb'
 require_relative 'route'
@@ -14,6 +15,7 @@ pwagons = []
 name_stations = ["Sain-Petersburg", "Moscow", "Novgorod"]
 name_trains = {"Пассажирский 1" => :passenger, "Пассажирский 2" => :passenger, 
 "Грузовой 1" => :cargo, "Грузовой 2" => :cargo}
+name_names = ["Пассажирский 1", "Пассажирский 2", "Грузовой 1", "Грузовой 2", "Noname"]
 
 # fill
 
@@ -66,6 +68,11 @@ routes.each do |stations|
     stations.show
     puts
   end
+
+RailwayStation.all
+
+puts "Find object"
+name_names.each { |name| puts "?? #{Train.find(name)}" if name != nil }
 
 #test
 

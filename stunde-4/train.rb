@@ -4,12 +4,22 @@ class Train
 # upspeed, downspeed, currentspeed, countvagons, addvagons (only stop), 
 # add route, move to route, show stations 
 
+include Maker
+
 attr_accessor :speed
 
-attr_reader :number,:type, :count_wagon, :route, :staition, :wagons
+attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
+  
+  @@numbers = {}  #не массив чтоб искать без перебора
+  @@numbers.default(key = nil)
+
+  def self.find(number)
+    @@numbers[number]  # предполагаю будет nil, если не будет нужного ключа
+  end
 
   def initialize(number, type)
     @wagons = []
+    @@numbers[number] = self
     @number = number
     @type = type
     @speed = 0
@@ -47,7 +57,6 @@ attr_reader :number,:type, :count_wagon, :route, :staition, :wagons
   def add_route(route)
     if route.defined?
       self.route = route
-      #self.staition = route.station[0]
     end
   end
 
