@@ -7,6 +7,10 @@ require_relative 'cargowagon.rb'
 
 # initialize
 
+VOL = 40
+PLC = 80
+
+i = 0
 stations = []
 trains = []
 routes = []
@@ -17,7 +21,7 @@ name_trains = {"psw-123" => :passenger, "psw-124" => :passenger,
 "crg-123" => :cargo, "crg-124" => :cargo}
 name_names = ["psw-123", "psw-124", "crg-123", "crg-124", "Noname"]
 
-# fill
+# fill for test
 
 name_stations.each  do |name|
     stations << RailwayStation.new(name)
@@ -25,11 +29,12 @@ name_stations.each  do |name|
 
 name_trains.each do |name, type|
     trains << Train.new(name, type)
-  end
-
-4.times do |type|
-    pwagons << PassengerWagon.new
-    cwagons << CargoWagon.new
+      2.times do |type|
+        pwagons << PassengerWagon.new(PLC)
+        cwagons << CargoWagon.new(VOL)
+        rand(PLC).times { pwagons.last.add }
+        rand(VOL).times { cwagons.last.add }
+      end
   end
 
 trains.each do |train|
@@ -47,21 +52,15 @@ trains.each do |train|
     routes[n].add(stations[2])
   end
 
-# see
+stations.each do |station|
+  station.add(trains[i])
+  i += 1
+end
 
-puts "Staions"
-stations.each do |name|
-    puts " - #{name.name}"
-  end
+stations.last.add(trains.last)
 
-puts "Trains"
-trains.each do |name|
-    puts " - #{name.number}, #{name.type}"
-      name.wagons.each do |namew|
-          print "+ #{namew.type} +"
-        end
-      puts
-  end
+
+# test lession 6
 
 puts "Routes"
 routes.each do |stations|
@@ -69,10 +68,20 @@ routes.each do |stations|
     puts
   end
 
+#puts "Find object"
+#name_names.each { |name| puts "?? #{Train.find(name)}" if name != nil }
 
-puts "Find object"
-name_names.each { |name| puts "?? #{Train.find(name)}" if name != nil }
+#lession 7
 
+RailwayStation.all.each  do |station|
+  puts "- Station '#{station.name}'"
+    station.trains.each do |train|
+      puts "-- Train '#{train.number}'"
+        train.wagons.each do |wagon|
+          puts "--- wagon #{wagon.num} type #{wagon.type}, free #{wagon.free}, occuped #{wagon.busy} "
+        end
+    end
+end
 
-#test
+#lession 7
 

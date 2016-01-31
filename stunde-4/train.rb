@@ -56,6 +56,12 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
     self.wagons.delete(wagon) if speed == 0
   end
 
+  def list(&block)
+    wagons.each do |wagon|
+      yield(wagon)
+    end
+  end
+
   def add_route(route)
     if route.defined?
       self.route = route
