@@ -7,10 +7,8 @@ class Route
 attr_accessor :stations
 
   def initialize(station_f, station_e)
-    @stations = [station_f, station_e] # not work
-    #@stations = []
-    #@stations << station_f
-    #@stations << station_e
+    @stations = [station_f, station_e]
+    validate!
   end
 
   def add(station)
@@ -26,5 +24,11 @@ attr_accessor :stations
       print " > #{station_s.name} >"
     end
   end
+
+protected
+
+def validate!
+  raise "error create - stations is nil" if stations[0].nil? || stations[1].nil?
+end
 
 end

@@ -6,23 +6,25 @@ class Train
 
 include Maker
 
+NUMBER_FORMAT = /^([a-z\d]){3}-*([a-z\d]){3}$/i
+
 attr_accessor :speed
 
 attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
   
   @@numbers = {}  #не массив чтоб искать без перебора
-  @@numbers.default(key = nil)
 
   def self.find(number)
     @@numbers[number]  # предполагаю будет nil, если не будет нужного ключа
   end
 
   def initialize(number, type)
-    @wagons = []
-    @@numbers[number] = self
     @number = number
     @type = type
     @speed = 0
+    @wagons = []
+    @@numbers[number] = self
+    validate!
   end
 
   def up(speed)
@@ -80,6 +82,20 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
       #puts "#{ route[index(station) + 1].name }" if route[index(station) <= route.length
     end
   end
+
+  def valid?
+    validate!
+  rescue
+    false
+  #end # 
+  end
+
+protected
+
+def validate!
+  raise "error create class - number is emty" if number.empty?
+  raise "error create class - invalid number format" if number !~ NUMBER_FORMAT
+end
 
 end
 

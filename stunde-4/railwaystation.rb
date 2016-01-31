@@ -11,16 +11,14 @@ attr_reader :name
 @@all = [] # не уверен что объявление необходимо
 
 def self.all
-  puts "All stations"
-  @@all.each do |station|
-      puts "!- #{station.name}"
-    end
+  @@all
 end
 
   def initialize(name)
     @name = name
     @trains = []
     @@all << self
+    validate!
   end
 
   def add(train)
@@ -48,5 +46,11 @@ end
     delete(train) if trains.length > 0  # .any?   !.emty?
     # code send next stations. i not know array stations.
    end
+
+protected
+
+def validate!
+  raise "error create - name is empty" if name.empty?
+end
 
 end

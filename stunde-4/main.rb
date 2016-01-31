@@ -13,9 +13,9 @@ routes = []
 cwagons = []
 pwagons = []
 name_stations = ["Sain-Petersburg", "Moscow", "Novgorod"]
-name_trains = {"Пассажирский 1" => :passenger, "Пассажирский 2" => :passenger, 
-"Грузовой 1" => :cargo, "Грузовой 2" => :cargo}
-name_names = ["Пассажирский 1", "Пассажирский 2", "Грузовой 1", "Грузовой 2", "Noname"]
+name_trains = {"psw-123" => :passenger, "psw-124" => :passenger, 
+"crg-123" => :cargo, "crg-124" => :cargo}
+name_names = ["psw-123", "psw-124", "crg-123", "crg-124", "Noname"]
 
 # fill
 
@@ -69,10 +69,10 @@ routes.each do |stations|
     puts
   end
 
-RailwayStation.all
 
 puts "Find object"
 name_names.each { |name| puts "?? #{Train.find(name)}" if name != nil }
+
 
 #test
 
