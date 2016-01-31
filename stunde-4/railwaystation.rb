@@ -29,6 +29,12 @@ end
    trains.delete(train)
   end
 
+  def list(&block)
+    trains.each do |train|
+      yield(train)
+    end
+  end
+
   def show(type_t = nil)
     if type_t == nil
     trains.each do |train_s|
