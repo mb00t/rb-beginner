@@ -17,8 +17,8 @@ end
   def initialize(name)
     @name = name
     @trains = []
-    @@all << self
     validate!
+    @@all << self
   end
 
   def add(train)

@@ -75,13 +75,14 @@ routes.each do |stations|
 
 RailwayStation.all.each  do |station|
   puts "- Station '#{station.name}'"
-    station.trains.each do |train|
+    station.list do |train|
       puts "-- Train '#{train.number}'"
-        train.wagons.each do |wagon|
+        train.list do |wagon|
           puts "--- wagon #{wagon.num} type #{wagon.type}, free #{wagon.free}, occuped #{wagon.busy} "
         end
     end
 end
+
 
 #lession 7
 

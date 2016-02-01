@@ -23,8 +23,8 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
     @type = type
     @speed = 0
     @wagons = []
-    @@numbers[number] = self
     validate!
+    @@numbers[number] = self
   end
 
   def up(speed)
@@ -49,7 +49,9 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
 
   def add(wagon)
     #self.count_wagon += 1 if speed == 0 
-    self.wagons << wagon if (speed == 0 && self.type == wagon.type)
+    #rescue
+     raise "error create - invalid type wagon" if wagon.type != :passenger && wagon.type != :cargo
+     self.wagons << wagon  #if (speed == 0 && self.type == wagon.type)
   end
 
   def del
@@ -101,6 +103,7 @@ protected
 def validate!
   raise "error create class - number is emty" if number.empty?
   raise "error create class - invalid number format" if number !~ NUMBER_FORMAT
+  raise "error create - ivalid type train" if type != :passenger && type != :cargo
 end
 
 end
