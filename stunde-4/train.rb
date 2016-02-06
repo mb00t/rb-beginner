@@ -1,21 +1,20 @@
 class Train
+  # number, type, numvagons
+  # upspeed, downspeed, currentspeed, countvagons, addvagons (only stop),
+  # add route, move to route, show stations
 
-# number, type, numvagons
-# upspeed, downspeed, currentspeed, countvagons, addvagons (only stop), 
-# add route, move to route, show stations 
+  include Maker
 
-include Maker
+  NUMBER_FORMAT = /^([a-z\d]){3}-*([a-z\d]){3}$/i
 
-NUMBER_FORMAT = /^([a-z\d]){3}-*([a-z\d]){3}$/i
+  attr_accessor :speed
 
-attr_accessor :speed
+  attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
 
-attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
-  
-  @@numbers = {}  #не массив чтоб искать без перебора
+  @@numbers = {}
 
   def self.find(number)
-    @@numbers[number]  # предполагаю будет nil, если не будет нужного ключа
+    @@numbers[number]
   end
 
   def initialize(number, type)
@@ -48,46 +47,44 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
   end
 
   def add(wagon)
-    #self.count_wagon += 1 if speed == 0 
-    #rescue
-     raise "error create - invalid type wagon" if wagon.type != :passenger && wagon.type != :cargo
-     self.wagons << wagon  #if (speed == 0 && self.type == wagon.type)
+    # self.count_wagon += 1 if speed == 0
+    # rescue
+    raise 'error-invalid types' if wagon.type != :passenger && wagon.type != :cargo
+    wagons << wagon
   end
 
   def del
-    self.wagons.delete(wagon) if speed == 0
+    wagons.delete(wagon) if speed == 0
   end
 
-  def list(&block)
+  def list(&_block)
     wagons.each do |wagon|
       yield(wagon)
     end
   end
 
   def add_route(route)
-    if route.defined?
-      self.route = route
-    end
+    self.route = route if route.defined?
   end
 
   def move_next
-    self.staition = self.route[index(self.station) + 1]
+    self.staition = route[index(station) + 1]
     start
   end
 
-  def move_to(station)
+  def move_to(_station)
     self.staition = staition
     start
   end
 
   def show(type_s)
     case type_s
-    when "current"
-      #puts "#{ route[index(station)].name }" # :-)  station.name
-    when "buck"
-      #puts "#{ route[index(station) - 1].name }" if route[index(station) > 0
-    when "next"
-      #puts "#{ route[index(station) + 1].name }" if route[index(station) <= route.length
+    when 'current'
+      # puts "#{ route[index(station)].name }"
+    when 'buck'
+      # puts "#{ route[index(station) - 1].name }"
+    when 'next'
+      # puts "#{ route[index(station) + 1].name }"
     end
   end
 
@@ -95,16 +92,14 @@ attr_reader :number, :type, :count_wagon, :route, :staition, :wagons
     validate!
   rescue
     false
-  #end # 
+    # end #
   end
 
-protected
+  protected
 
-def validate!
-  raise "error create class - number is emty" if number.empty?
-  raise "error create class - invalid number format" if number !~ NUMBER_FORMAT
-  raise "error create - ivalid type train" if type != :passenger && type != :cargo
+  def validate!
+    raise 'error- number is emty' if number.empty?
+    raise 'error- invalid number format' if number !~ NUMBER_FORMAT
+    raise 'error- ivalid type train' if type != :passenger && type != :cargo
+  end
 end
-
-end
-

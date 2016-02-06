@@ -1,9 +1,10 @@
 require_relative 'wagon.rb'
 
 class PassengerWagon < Wagon
+  # class
 
-attr_accessor :free, :places
-attr_reader :num
+  attr_accessor :free, :places
+  attr_reader :num
 
   def initialize(places)
     @type = :passenger
@@ -17,7 +18,6 @@ attr_reader :num
   end
 
   def add
-    self.free -= 1 if free > 0 
+    self.free -= 1 if free > 0
   end
-
 end

@@ -1,7 +1,6 @@
-require_relative 'train'
+require_relative 'train.rb'
 
-class PassangerTrain < 'Train'
-
+class PassangerTrain < Train
   def initialize
     super
     @type = :passenger

@@ -1,18 +1,13 @@
 class RailwayStation
+  attr_accessor :trains
 
-# name
-# add train, show all train, show type train
-# forward train with delete from stations
+  attr_reader :name
 
-attr_accessor :trains
+  @@all = []
 
-attr_reader :name
-
-@@all = [] # не уверен что объявление необходимо
-
-def self.all
-  @@all
-end
+  def self.all
+    @@all
+  end
 
   def initialize(name)
     @name = name
@@ -22,41 +17,39 @@ end
   end
 
   def add(train)
-    self.trains << train
+    trains << train
   end
 
   def delete(train)
-   trains.delete(train)
+    trains.delete(train)
   end
 
-  def list(&block)
+  def list(&_block)
     trains.each do |train|
       yield(train)
     end
   end
 
   def show(type_t = nil)
-    if type_t == nil
-    trains.each do |train_s|
+    if type_t.nil?
+      trains.each do |train_s|
         puts train_s
       end
     else
       trains.each do |train_s|
         puts train_s if train.type == type_t
-        #correct to print type and name train
+        # correct to print type and name train
       end
-    end  
+    end
   end
 
   def depart(train)
-    delete(train) if trains.length > 0  # .any?   !.emty?
-    # code send next stations. i not know array stations.
-   end
+    delete(train) if trains.any? > 0
+  end
 
-protected
+  protected
 
-def validate!
-  raise "error create - name is empty" if name.empty?
-end
-
+  def validate!
+    raise 'error create - name is empty' if name.empty?
+  end
 end

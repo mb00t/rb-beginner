@@ -5,40 +5,39 @@ require_relative 'passengerwagon.rb'
 require_relative 'cargowagon.rb'
 
 @UI_B = "\x1b[0m"
-@ui_a = {:red => "\x1b[31m", :blue => "\x1b[34m", :green => "\x1b[32m"}
+@ui_a = { red: "\x1b[31m", blue: "\x1b[34m", green: "\x1b[32m" }
 
 def add_station
-  # добавить станцию
+  # show
 end
 
 def create_train
-  # создать поезд
+  # show
 end
 
 def add_wagon
-  # добавить вагон
+  # show
 end
 
 def delete_wagon
-  # отцепить вагон
+  # show
 end
 
 def add_train_to
-  # поместить поезд на станцию
+  # show
 end
 
 def show_stations
-  # показать список станций
+  # show
 end
 
 def show_train
-  # показать поезда на станции
+  # show
 end
 
 def color(text)
-  puts "#{ @ui_a[:green] + text + @UI_B}"
+  puts "#{@ui_a[:green]}#{text}#{@UI_B}"
 end
 
-color "Hello"
+color 'Hello'
 puts @ui_a[:green]
-
