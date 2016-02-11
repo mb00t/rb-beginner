@@ -1,5 +1,5 @@
-## Welcome 
+## Welcome to imitate move Trains.
 
-Using RailWayStations
+Using RailWayStations, send/stop Train, create Route
 
-[read - ] (https://github.com/mb00t/rb-beginer)
+[last source - ] (https://github.com/mb00t/rb-beginer)
