@@ -27,6 +27,6 @@ cart.each do |key, value|
   summa = value[:price] * value[:num]
   summa_cart += summa
   puts "наименование #{key}, цена: #{value[:price]} ,количество: #{value[:num]}, общая сумма: #{summa}"
-end
+en
 
 puts "Сумма покупок: #{summa_cart}"
